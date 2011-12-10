@@ -107,7 +107,7 @@ setup(
     version=":versiontools:consent:",
     url='http://appregsiter.readthedocs.org/',
     license='MIT',
-    description="A Django app that provides the building blocks for an app registry system",
+    description="A Django app for managing permissions that a user has granted the website to do. This could be used for a number of requests, from asking the user if you can post to their twitter, or send them newsletter updates.",
     long_description=read('README.rst'),
     author='Dougal Matthews',
     author_email='dougal85@gmail.com',
