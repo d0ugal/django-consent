@@ -1,0 +1,8 @@
+-r requirements.txt
+coverage
+svn+http://code.djangoproject.com/svn/django/trunk#egg=django
+mock
+tox
+nose
+versiontools
+south
