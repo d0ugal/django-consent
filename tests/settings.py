@@ -120,8 +120,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'consent',
-    'test_consent',
+    'fixture_generator',
     'south',
+    'test_consent',
 )
 
 # A sample logging configuration. The only tangible logging
