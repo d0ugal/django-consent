@@ -1,3 +1,9 @@
+"""
+There are two key models in the Consent app. These are Privilege and Consent. A
+privilage is added to the website normally in the Django admin and then a user
+has the option of granting the consent to to the website. After Consent has
+been granted, the user is able to revoke the consent.
+"""
 from datetime import datetime
 
 from django.db import models
@@ -5,6 +11,11 @@ from django.contrib.auth.models import User
 
 
 class Privilege(models.Model):
+    """
+    A privilage is a permission that the website asks from the user. This could
+    be the permission to email them, share the users details or to use their
+    (already authorised) social netorking sites.
+    """
     name = models.CharField(max_length=64)
     description = models.TextField()
     users = models.ManyToManyField(User, through='consent.Consent')
@@ -36,6 +47,10 @@ class ConsentManager(models.Manager):
 
 
 class Consent(models.Model):
+    """
+    Consent is the agreement from a user to grant a specific privilege. This can
+    then be revoked by the user at a later date.
+    """
     user = models.ForeignKey(User)
     privilege = models.ForeignKey(Privilege)
     granted_on = models.DateTimeField(default=datetime.now)
@@ -46,6 +61,24 @@ class Consent(models.Model):
 
     class Meta:
         unique_together = ('user', 'privilege',)
+
+    def revoke(self):
+        """
+        Revoke the users consent for the Privilege if it has not already been
+        revoked.
+        """
+        if not self.revoked:
+            self.revoked = True
+            self.revoked_on = datetime.now()
+
+    def grant(self):
+        """
+        Grant the users consent for the Privilege if it has been revoked.
+        """
+        if self.revoked:
+            self.revoked = False
+            self.revoked_on = None
+            self.granted_on = datetime.now()
 
     def __unicode__(self):
 
