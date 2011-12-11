@@ -6,3 +6,4 @@ tox
 nose
 versiontools
 south
+Sphinx
