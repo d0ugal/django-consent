@@ -8,8 +8,8 @@ from consent.models import Consent, Privilege
 
 @fixture_generator(User)
 def test_users():
-    User.objects.create(username="john")
-    User.objects.create(username="smith")
+    User.objects.create_user(username="john", email="john@test.com", password="password")
+    User.objects.create_user(username="smith", email="smith@test.com", password="password")
 
 
 @fixture_generator(Privilege)
@@ -28,7 +28,7 @@ def test_privileges():
     """)
 
 
-@fixture_generator(Consent, requires=['test_consent.test_privileges', ])
+@fixture_generator(Consent, requires=['test_consent.test_privileges', 'test_consent.test_users'])
 def test_consents():
 
     newsletter, marketing, facebook, twitter = Privilege.objects.order_by('name')
@@ -37,12 +37,12 @@ def test_consents():
 
     Consent.objects.create(user=smith, privilege=newsletter)
     Consent.objects.create(user=smith, privilege=marketing,
-        granred_on=datetime(2011, 11, 01), revoked_on=datetime(2011, 11, 01),
+        granted_on=datetime(2011, 11, 01), revoked_on=datetime(2011, 11, 01),
         revoked=True)
     Consent.objects.create(user=smith, privilege=facebook)
 
     Consent.objects.create(user=john, privilege=newsletter,
-        granred_on=datetime(2011, 10, 01), revoked_on=datetime(2011, 10, 01),
+        granted_on=datetime(2011, 10, 01), revoked_on=datetime(2011, 10, 01),
         revoked=True)
     Consent.objects.create(user=john, privilege=marketing)
     Consent.objects.create(user=john, privilege=facebook)

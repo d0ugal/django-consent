@@ -1,8 +1,7 @@
 -r requirements.txt
 coverage
-django-fixture-generator
-mock
-nose
+#django-fixture-generator - using a fix for django 1.4
+-e git://github.com/d0ugal/django-fixture-generator.git@dc5ffa2cbfbac30473aba4a01acfd009b4ca8f79#egg=django-fixture-generator
 south
 Sphinx
 svn+http://code.djangoproject.com/svn/django/trunk#egg=django
