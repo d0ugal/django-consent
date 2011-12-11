@@ -1,9 +1,10 @@
 -r requirements.txt
 coverage
-svn+http://code.djangoproject.com/svn/django/trunk#egg=django
+django-fixture-generator
 mock
-tox
 nose
-versiontools
 south
 Sphinx
+svn+http://code.djangoproject.com/svn/django/trunk#egg=django
+tox
+versiontools
