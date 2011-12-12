@@ -1,6 +1,40 @@
 from django.test import Client, TestCase
 
 
+class ModelsTestCase(TestCase):
+
+    fixtures = ['consents.json', ]
+
+    def setUp(self):
+
+        from django.contrib.auth.models import User
+
+        self.john = User.objects.get(username='john')
+        self.smith = User.objects.get(username='smith')
+
+    def test_consent(self):
+
+        from consent.models import Consent
+
+        consents = Consent.objects.for_user(self.john).order_by('privilege__name')
+
+        # the three that John has previously encoutered in the fixtures
+        newsletter, marketing, facebook = consents
+
+        self.assertEqual(str(newsletter), "john permits the 'Email Newsletter' privilege")
+        self.assertEqual(str(marketing), "john revoked the 'Marketing Emails' privilege")
+
+        self.assertNotIn(newsletter, Consent.objects.revoked(self.john))
+        newsletter.revoke()
+        newsletter.save()
+        self.assertIn(newsletter, Consent.objects.revoked(self.john))
+
+        self.assertNotIn(marketing, Consent.objects.granted(self.john))
+        marketing.grant()
+        marketing.save()
+        self.assertIn(marketing, Consent.objects.granted(self.john))
+
+
 class ViewTestCase(TestCase):
 
     fixtures = ['consents.json', ]
@@ -53,3 +87,11 @@ class ViewTestCase(TestCase):
         self.assertEqual(granted_count, 0)
         revoked_count = Consent.objects.revoked(user=self.john).count()
         self.assertEqual(revoked_count, 3)
+
+        # Grant all of the consents
+        r = self.client.post('/edit/', {'consents': [1, 2, 3, 4]})
+
+        granted_count = Consent.objects.granted(user=self.john).count()
+        self.assertEqual(granted_count, 4)
+        revoked_count = Consent.objects.revoked(user=self.john).count()
+        self.assertEqual(revoked_count, 0)

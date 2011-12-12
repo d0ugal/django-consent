@@ -94,7 +94,7 @@ class Consent(models.Model):
 
     def __unicode__(self):
 
-        if self.revoked:
+        if not self.revoked:
             adjv = 'permits'
         else:
             adjv = 'revoked'
