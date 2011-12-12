@@ -1,1 +1,38 @@
-[{"pk": 1, "model": "auth.user", "fields": {"username": "john", "first_name": "", "last_name": "", "is_active": true, "is_superuser": false, "is_staff": false, "last_login": "2011-12-11T04:50:54.713", "groups": [], "user_permissions": [], "password": "", "email": "", "date_joined": "2011-12-11T04:50:54.713"}}, {"pk": 2, "model": "auth.user", "fields": {"username": "smith", "first_name": "", "last_name": "", "is_active": true, "is_superuser": false, "is_staff": false, "last_login": "2011-12-11T04:50:54.726", "groups": [], "user_permissions": [], "password": "", "email": "", "date_joined": "2011-12-11T04:50:54.726"}}]
+[
+    {
+        "fields": {
+            "date_joined": "2011-12-12 05:11:20", 
+            "email": "john@test.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2011-12-12 05:11:20", 
+            "last_name": "", 
+            "password": "sha1$8c474$899072aaf5a5cefdbbca98d6385912cca22aa8f6", 
+            "user_permissions": [], 
+            "username": "john"
+        }, 
+        "model": "auth.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2011-12-12 05:11:20", 
+            "email": "smith@test.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2011-12-12 05:11:20", 
+            "last_name": "", 
+            "password": "sha1$5d766$ecc67ab084d8199cc7b578fdfbdd349209034cbe", 
+            "user_permissions": [], 
+            "username": "smith"
+        }, 
+        "model": "auth.user", 
+        "pk": 2
+    }
+]

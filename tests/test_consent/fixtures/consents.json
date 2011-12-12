@@ -1,1 +1,136 @@
-[{"pk": 1, "model": "consent.privilege", "fields": {"name": "Email Newsletter", "description": "\n    Send a bi-monthly news letter to the user.\n    "}}, {"pk": 2, "model": "consent.privilege", "fields": {"name": "Marketing Emails", "description": "\n    Allow us to give your email address to third party spammers.\n    "}}, {"pk": 3, "model": "consent.privilege", "fields": {"name": "Post to Facebook", "description": "\n    Send an update to Facebook when you upload a new picture.\n    "}}, {"pk": 4, "model": "consent.privilege", "fields": {"name": "Post to Twitter", "description": "\n    Send an update to Twitter when you upload a new picture.\n    "}}, {"pk": 1, "model": "consent.consent", "fields": {"privilege": 1, "granted_on": "2011-12-11T04:54:19.177", "revoked": false, "user": 1, "revoked_on": null}}, {"pk": 2, "model": "consent.consent", "fields": {"privilege": 2, "granted_on": "2011-11-01T00:00:00", "revoked": true, "user": 1, "revoked_on": "2011-11-01T00:00:00"}}, {"pk": 3, "model": "consent.consent", "fields": {"privilege": 3, "granted_on": "2011-12-11T04:54:19.193", "revoked": false, "user": 1, "revoked_on": null}}, {"pk": 4, "model": "consent.consent", "fields": {"privilege": 1, "granted_on": "2011-10-01T00:00:00", "revoked": true, "user": 2, "revoked_on": "2011-10-01T00:00:00"}}, {"pk": 5, "model": "consent.consent", "fields": {"privilege": 2, "granted_on": "2011-12-11T04:54:19.209", "revoked": false, "user": 2, "revoked_on": null}}, {"pk": 6, "model": "consent.consent", "fields": {"privilege": 3, "granted_on": "2011-12-11T04:54:19.216", "revoked": false, "user": 2, "revoked_on": null}}, {"pk": 1, "model": "auth.user", "fields": {"username": "john", "first_name": "", "last_name": "", "is_active": true, "is_superuser": false, "is_staff": false, "last_login": "2011-12-11T04:54:19.157", "groups": [], "user_permissions": [], "password": "sha1$bJJlAqODrMLv$e626d26427e6bb02e7027d012249c1431c290c97", "email": "john@test.com", "date_joined": "2011-12-11T04:54:19.157"}}, {"pk": 2, "model": "auth.user", "fields": {"username": "smith", "first_name": "", "last_name": "", "is_active": true, "is_superuser": false, "is_staff": false, "last_login": "2011-12-11T04:54:19.164", "groups": [], "user_permissions": [], "password": "sha1$qkbIjeJD5vLU$e5e4f8a2e1efd69c5f4555c1fee891e33b7ee71f", "email": "smith@test.com", "date_joined": "2011-12-11T04:54:19.164"}}]
+[
+    {
+        "fields": {
+            "description": "\n    Send a bi-monthly news letter to the user.\n    ", 
+            "name": "Email Newsletter"
+        }, 
+        "model": "consent.privilege", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "description": "\n    Allow us to give your email address to third party spammers.\n    ", 
+            "name": "Marketing Emails"
+        }, 
+        "model": "consent.privilege", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "description": "\n    Send an update to Facebook when you upload a new picture.\n    ", 
+            "name": "Post to Facebook"
+        }, 
+        "model": "consent.privilege", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "description": "\n    Send an update to Twitter when you upload a new picture.\n    ", 
+            "name": "Post to Twitter"
+        }, 
+        "model": "consent.privilege", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-12-12 05:11:29", 
+            "privilege": 1, 
+            "revoked": false, 
+            "revoked_on": null, 
+            "user": 1
+        }, 
+        "model": "consent.consent", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-11-01 00:00:00", 
+            "privilege": 2, 
+            "revoked": true, 
+            "revoked_on": "2011-11-01 00:00:00", 
+            "user": 1
+        }, 
+        "model": "consent.consent", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-12-12 05:11:29", 
+            "privilege": 3, 
+            "revoked": false, 
+            "revoked_on": null, 
+            "user": 1
+        }, 
+        "model": "consent.consent", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-10-01 00:00:00", 
+            "privilege": 1, 
+            "revoked": true, 
+            "revoked_on": "2011-10-01 00:00:00", 
+            "user": 2
+        }, 
+        "model": "consent.consent", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-12-12 05:11:29", 
+            "privilege": 2, 
+            "revoked": false, 
+            "revoked_on": null, 
+            "user": 2
+        }, 
+        "model": "consent.consent", 
+        "pk": 5
+    }, 
+    {
+        "fields": {
+            "granted_on": "2011-12-12 05:11:29", 
+            "privilege": 3, 
+            "revoked": false, 
+            "revoked_on": null, 
+            "user": 2
+        }, 
+        "model": "consent.consent", 
+        "pk": 6
+    }, 
+    {
+        "fields": {
+            "date_joined": "2011-12-12 05:11:29", 
+            "email": "john@test.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2011-12-12 05:11:29", 
+            "last_name": "", 
+            "password": "sha1$3f470$ea99e90663915d8856c772d0ab01bd6633e042f5", 
+            "user_permissions": [], 
+            "username": "john"
+        }, 
+        "model": "auth.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2011-12-12 05:11:29", 
+            "email": "smith@test.com", 
+            "first_name": "", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": false, 
+            "is_superuser": false, 
+            "last_login": "2011-12-12 05:11:29", 
+            "last_name": "", 
+            "password": "sha1$eab4b$90a9efde8048f0025ce99819372852f7e77d9f6c", 
+            "user_permissions": [], 
+            "username": "smith"
+        }, 
+        "model": "auth.user", 
+        "pk": 2
+    }
+]

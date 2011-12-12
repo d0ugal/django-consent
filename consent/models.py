@@ -45,6 +45,18 @@ class ConsentManager(models.Manager):
         Consent.objects.filter(user=user, privilege__in=privileges).update(
                 revoked=True, revoked_on=datetime.now())
 
+    def granted(self, user=None):
+        granted_consents = self.filter(revoked=False)
+        if user:
+            granted_consents = granted_consents.filter(user=user)
+        return granted_consents
+
+    def revoked(self, user=None):
+        revoked_consents = self.filter(revoked=True)
+        if user:
+            revoked_consents = revoked_consents.filter(user=user)
+        return revoked_consents
+
 
 class Consent(models.Model):
     """
