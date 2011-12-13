@@ -18,8 +18,9 @@ class PrivilegeListView(ListView):
     model = Privilege
 
 
-class PrivilegeEditView(FormView):
+class ConsentEditView(FormView):
 
+    #: The default template name for editing instances of ``consent.model.Consent``
     template_name = 'consent/consent_edit_view.html'
     form_class = ConsentForm
     success_url = '.'

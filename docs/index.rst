@@ -97,5 +97,5 @@ Views Reference
 .. autoclass:: PrivilegeListView
     :members:
 
-.. autoclass:: PrivilegeEditView
+.. autoclass:: ConsentEditView
     :members:
