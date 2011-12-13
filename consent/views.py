@@ -6,28 +6,44 @@ from consent.forms import ConsentForm
 
 
 class PrivilegeListView(ListView):
+    """
+    The PrivilegeListView inherits from ``django.views.generic.ListView`` and
+    sets a number of defaults to make it easy to integrate into your app.
+    """
 
+    #: The template variable name for the QuerySet of ``consent.models.Privilege``
     context_object_name = 'privilege_list'
+    #: The default template name for showing the list of privileges
     template_name = 'consent/privilege_list_view.html'
     model = Privilege
 
 
 class PrivilegeEditView(FormView):
 
-    context_object_name = 'consent_list'
     template_name = 'consent/consent_edit_view.html'
     form_class = ConsentForm
     success_url = '.'
 
     def get_privileges_with_consent(self):
-        return Consent.objects.filter(user=self.request.user, revoked=False)
+        """
+        Return all of the granted consents for the current user.
+        """
+        return Consent.objects.granted(user=self.request.user)
 
     def get_initial(self):
+        """
+        Create an initial data for the form of the consent ID's that the user
+        has current granted.
+        """
         consents = self.get_privileges_with_consent()
         consent_ids = consents.values_list('id', flat=True)
         return {'consents': consent_ids, }
 
     def form_valid(self, form):
+        """
+        Validate the form and update the users choices, granting and revoking
+        privileges based on their choices.
+        """
 
         current_consents = self.get_privileges_with_consent()
         consents = form.cleaned_data['consents']

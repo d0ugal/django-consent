@@ -30,17 +30,19 @@ Model Reference
 
     .. attribute:: name
 
-        ``CharField(max_length=64)`` The name of the Privilege
+        ``CharField(max_length=64)``
+        The name of the Privilege
 
     .. attribute:: description
 
-        ``TextField()`` A user friendly description to state what granting the
-        privilege would mean.
+        ``TextField()``
+        A user friendly description to state what granting the privilege would
+        mean.
 
     .. attribute:: users
 
-        ``ManyToManyField(User, through='consent.Consent')`` The users that
-        have granted and revoked this Privilege.
+        ``ManyToManyField(User, through='consent.Consent')``
+        The users that have granted and revoked this Privilege.
 
         .. note::
 
@@ -61,18 +63,19 @@ Model Reference
 
     .. attribute:: granted_on
 
-        ``models.DateTimeField(default=datetime.now)`` When the Privilege was
-        originally granted by the user.
+        ``models.DateTimeField(default=datetime.now)``
+        When the Privilege was originally granted by the user.
 
     .. attribute:: revoked_on
 
-        ``models.DateTimeField(null=True, blank=True)`` When the Privilege was
-        revoked by the user. If it has never been revoked this will be ``None``
+        ``models.DateTimeField(null=True, blank=True)``
+        When the Privilege was revoked by the user. If it has never been
+        revoked this will be ``None``
 
     .. attribute:: revoked
 
-        ``models.BooleanField(default=False)`` A Boolean field designating if
-        the Privilege has been revoked or not.
+        ``models.BooleanField(default=False)``
+        A Boolean field designating if the Privilege has been revoked or not.
 
         .. note::
 
@@ -82,3 +85,17 @@ Model Reference
 
     .. automethod:: revoke
     .. automethod:: grant
+
+.. autoclass:: ConsentManager
+
+
+Views Reference
+========================================
+
+.. automodule:: consent.views
+
+.. autoclass:: PrivilegeListView
+    :members:
+
+.. autoclass:: PrivilegeEditView
+    :members:

@@ -28,11 +28,21 @@ class Privilege(models.Model):
 
 
 class ConsentManager(models.Manager):
+    """
+    The ConsentManager adds a number of utility methods to the Consent.objects
+    interface to help with common tasks and functions.
+    """
 
     def for_user(self, user):
+        """
+        Return the Consent instances for a given user.
+        """
         return Consent.objects.filter(user=user)
 
     def grant_consent(self, user, privileges):
+        """
+        Grant an QuerySet (or iterable) of privileges for a specifiv user.
+        """
         for privilege in privileges:
             consent, created = Consent.objects.get_or_create(
                 user=user, privilege=privilege)
@@ -42,16 +52,27 @@ class ConsentManager(models.Manager):
                 consent.save()
 
     def revoke_consent(self, user, privileges):
+        """
+        Revoke an QuerySet (or iterable) of privileges for a specifiv user.
+        """
         Consent.objects.filter(user=user, privilege__in=privileges).update(
                 revoked=True, revoked_on=datetime.now())
 
     def granted(self, user=None):
+        """
+        Return all of the granted consents either for all users or the given
+        user.
+        """
         granted_consents = self.filter(revoked=False)
         if user:
             granted_consents = granted_consents.filter(user=user)
         return granted_consents
 
     def revoked(self, user=None):
+        """
+        Return all of the revoked consents either for all the users or the given
+        user.
+        """
         revoked_consents = self.filter(revoked=True)
         if user:
             revoked_consents = revoked_consents.filter(user=user)
