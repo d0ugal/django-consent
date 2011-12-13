@@ -1,9 +1,0 @@
-
-{% for privilege in privilege_list %}
-
-   <h4>{{ privilege.name }}</h4>
-   {{ privilege.description }}<br/>
-   <br/>
-   ({{ privilege.users.count }} User{{ privilege.users.count|pluralize }})
-
-{% endfor %}

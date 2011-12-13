@@ -1,0 +1,9 @@
+
+{% for consent in consent_list %}
+
+   <h4>{{ consent.privilege.name }}</h4>
+   {{ consent.privilege.description }}<br/>
+   <br/>
+   ({{ consent.privilege.users.count }} User{{ consent.privilege.users.count|pluralize }})
+
+{% endfor %}

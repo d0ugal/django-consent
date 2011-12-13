@@ -16,13 +16,15 @@ class ModelsTestCase(TestCase):
 
         from consent.models import Consent
 
-        consents = Consent.objects.for_user(self.john).order_by('privilege__name')
+        consents = Consent.objects.for_user(self.john)
 
         # the three that John has previously encoutered in the fixtures
         newsletter, marketing, facebook = consents
 
-        self.assertEqual(str(newsletter), "john permits the 'Email Newsletter' privilege")
-        self.assertEqual(str(marketing), "john revoked the 'Marketing Emails' privilege")
+        msg = "john permits the 'Email Newsletter' privilege"
+        self.assertEqual(str(newsletter), msg)
+        msg = "john revoked the 'Marketing Emails' privilege"
+        self.assertEqual(str(marketing), msg)
 
         self.assertNotIn(newsletter, Consent.objects.revoked(self.john))
         newsletter.revoke()
@@ -57,7 +59,7 @@ class ViewTestCase(TestCase):
         self.assertEqual(r.status_code, 200,
             "Response returned a %s when 200 was expected" % r.status_code)
 
-        for privilege in Privilege.objects.all():
+        for privilege in Privilege.objects.filter(consent__user=self.john):
 
             self.assertIn(privilege.name, r.content)
             self.assertIn(privilege.description, r.content)

@@ -1,8 +1,8 @@
 """
-There are two key models in the Consent app. These are Privilege and Consent. A
-privilage is added to the website normally in the Django admin and then a user
-has the option of granting the consent to to the website. After Consent has
-been granted, the user is able to revoke the consent.
+There are two key models in the Consent app. These are Privilege and Consent.
+A privilage is added to the website normally in the Django admin and then a
+user has the option of granting the consent to to the website. After Consent
+has been granted, the user is able to revoke the consent.
 """
 from datetime import datetime
 
@@ -12,9 +12,9 @@ from django.contrib.auth.models import User
 
 class Privilege(models.Model):
     """
-    A privilage is a permission that the website asks from the user. This could
-    be the permission to email them, share the users details or to use their
-    (already authorised) social netorking sites.
+    A privilage is a permission that the website asks from the user. This
+    could be the permission to email them, share the users details or to use
+    their (already authorised) social netorking sites.
     """
     name = models.CharField(max_length=64)
     description = models.TextField()
@@ -70,8 +70,8 @@ class ConsentManager(models.Manager):
 
     def revoked(self, user=None):
         """
-        Return all of the revoked consents either for all the users or the given
-        user.
+        Return all of the revoked consents either for all the users or the
+        given user.
         """
         revoked_consents = self.filter(revoked=True)
         if user:
@@ -81,8 +81,8 @@ class ConsentManager(models.Manager):
 
 class Consent(models.Model):
     """
-    Consent is the agreement from a user to grant a specific privilege. This can
-    then be revoked by the user at a later date.
+    Consent is the agreement from a user to grant a specific privilege. This
+    can then be revoked by the user at a later date.
     """
     user = models.ForeignKey(User)
     privilege = models.ForeignKey(Privilege)
@@ -94,6 +94,7 @@ class Consent(models.Model):
 
     class Meta:
         unique_together = ('user', 'privilege',)
+        ordering = ['privilege__name', ]
 
     def revoke(self):
         """
