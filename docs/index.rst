@@ -25,11 +25,11 @@ Installation
 
 Use pip::
 
-    pip install django-appregister
+    pip install django-consent
 
 Or, if you must::
 
-    easy_install django-appregister
+    easy_install django-consent
 
 After installing, add 'consent' to your ``INSTALLED_APPS`` and run a syncdb or
 a migrate if you are using south.
