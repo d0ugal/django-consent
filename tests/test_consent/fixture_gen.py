@@ -38,7 +38,8 @@ def test_consents():
 
     newsletter, marketing, facebook, twitter = privileges
 
-    smith, john = User.objects.order_by('username')
+    john = User.objects.get(username='john')
+    smith = User.objects.get(username='smith')
 
     Consent.objects.create(user=smith, privilege=newsletter)
     Consent.objects.create(user=smith, privilege=marketing,

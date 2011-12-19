@@ -26,6 +26,12 @@ class Privilege(models.Model):
     def __unicode__(self):
         return self.name
 
+    def is_granted_by(self, user):
+        consent = Consent.objects.get_or_none(user=user, privilege=self)
+        if consent:
+            return consent.is_granted
+        return False
+
 
 class ConsentManager(models.Manager):
     """
@@ -78,6 +84,15 @@ class ConsentManager(models.Manager):
             revoked_consents = revoked_consents.filter(user=user)
         return revoked_consents
 
+    def get_or_none(self, *args, **kwargs):
+
+        try:
+            return self.get(*args, **kwargs)
+        except Consent.DoesNotExist:
+            pass
+
+        return None
+
 
 class Consent(models.Model):
     """
@@ -113,6 +128,22 @@ class Consent(models.Model):
             self.revoked = False
             self.revoked_on = None
             self.granted_on = datetime.now()
+
+    @property
+    def is_granted(self):
+        """
+        Returns True if this consent has not been revoked by the user.
+        Otherwise False is returned.
+        """
+        return not self.revoked
+
+    @property
+    def is_revoked(self):
+        """
+        returns True if this consent has been revoked by the user.
+        Otherwise False is returned.
+        """
+        return not self.is_granted
 
     def __unicode__(self):
 

@@ -53,6 +53,30 @@ class ModelsTestCase(TestCase):
         marketing.save()
         self.assertIn(marketing, Consent.objects.granted(self.john))
 
+    def test_checking_privileges(self):
+
+        from consent.models import Privilege, Consent
+
+        privileges = Privilege.objects.order_by('name')
+
+        newsletter, marketing, facebook, twitter = privileges
+
+        # Normal grants
+        self.assertTrue(newsletter.is_granted_by(self.john))
+        self.assertTrue(facebook.is_granted_by(self.john))
+
+        # Granted and then revoked
+        consent = Consent.objects.get(privilege=marketing, user=self.john)
+        self.assertEqual(consent.is_revoked, True)
+
+        self.assertFalse(marketing.is_granted_by(self.john))
+
+        # Never granted, no consent exists.
+        with self.assertRaises(Consent.DoesNotExist):
+            Consent.objects.get(privilege=twitter, user=self.john)
+
+        self.assertFalse(twitter.is_granted_by(self.john))
+
 
 class ViewTestCase(TestCase):
 
