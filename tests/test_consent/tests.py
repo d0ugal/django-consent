@@ -12,6 +12,19 @@ class ModelsTestCase(TestCase):
         self.john = User.objects.get(username='john')
         self.smith = User.objects.get(username='smith')
 
+    def test_module_util_methods(self):
+
+        from consent.models import Consent
+
+        granted = Consent.objects.granted()
+        revoked = Consent.objects.revoked()
+
+        for consent in granted:
+            self.assertNotIn(consent, revoked)
+
+        for consent in revoked:
+            self.assertNotIn(consent, granted)
+
     def test_consent(self):
 
         from consent.models import Consent
@@ -27,11 +40,15 @@ class ModelsTestCase(TestCase):
         self.assertEqual(str(marketing), msg)
 
         self.assertNotIn(newsletter, Consent.objects.revoked(self.john))
+        # Called twice, to test the falsey if in revoke
+        newsletter.revoke()
         newsletter.revoke()
         newsletter.save()
         self.assertIn(newsletter, Consent.objects.revoked(self.john))
 
         self.assertNotIn(marketing, Consent.objects.granted(self.john))
+        # Called twice, to test the falsey if in grant.
+        marketing.grant()
         marketing.grant()
         marketing.save()
         self.assertIn(marketing, Consent.objects.granted(self.john))
