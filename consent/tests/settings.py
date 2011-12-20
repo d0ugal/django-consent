@@ -18,7 +18,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'test_consent.db',
+        'NAME': os.path.join(TEST_DIR, 'test_consent.db'),
     }
 }
 
@@ -97,7 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'test_consent.urls'
+ROOT_URLCONF = 'consent.tests.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -115,9 +115,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'consent',
+    'consent.tests',
     'fixture_generator',
     'south',
-    'test_consent',
 )
 
 # A sample logging configuration. The only tangible logging

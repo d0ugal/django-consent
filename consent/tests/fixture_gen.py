@@ -30,8 +30,8 @@ def test_privileges():
     """)
 
 
-@fixture_generator(Consent, requires=['test_consent.test_privileges',
-    'test_consent.test_users'])
+@fixture_generator(Consent, requires=['consent.tests.test_privileges',
+    'consent.tests.test_users'])
 def test_consents():
 
     privileges = Privilege.objects.order_by('name')

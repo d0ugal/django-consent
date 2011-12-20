@@ -128,4 +128,6 @@ setup(
     setup_requires=[
         'versiontools >= 1.6',
     ],
+    tests_require=["Django>=1.2"],
+    test_suite="runtests.runtests"
 )

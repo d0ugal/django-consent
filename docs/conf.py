@@ -15,10 +15,9 @@ import sys, os
 
 
 sys.path.append(os.path.abspath('..'))
-sys.path.append(os.path.join(os.path.abspath('..'), 'tests'))
 from consent import __version__
 from versiontools import format_version
-from tests import settings
+from consent.tests import settings
 from django.core.management import setup_environ
 setup_environ(settings)
 

@@ -8,5 +8,5 @@ MANIFEST
 .coverage
 *.egg
 Vagrantfile
-tests/.tox/
+.tox/
 *.db
