@@ -1,8 +1,9 @@
 Django consent
 ========================================
 
-A Django app for managing permissions that a user has granted the website to do.
-This could be used for a number of requests, from asking the user if you can
-post to their twitter, or send them newsletter updates.
+A Django app for managing permissions from the point of view of the user. A
+website typically grants users permissions, but this is the inverse. A user
+grants the website specific permissions - like the permission to update their
+twitter status or send the user emails.
 
 The app has no requirements, but supports south for migrations.
