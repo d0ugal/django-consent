@@ -105,7 +105,7 @@ def find_package_data(
 setup(
     name="django-consent",
     version=":versiontools:consent:",
-    url='http://appregsiter.readthedocs.org/',
+    url='http://consent.readthedocs.org/',
     license='MIT',
     description="A Django app for managing permissions that a user has granted the website to do. This could be used for a number of requests, from asking the user if you can post to their twitter, or send them newsletter updates.",
     long_description=read('README.rst'),
