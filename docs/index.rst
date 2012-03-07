@@ -18,6 +18,7 @@ Contents
 
  models
  views
+ signals
  changelog
 
 Installation
