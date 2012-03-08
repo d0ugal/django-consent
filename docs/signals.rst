@@ -1,7 +1,9 @@
 Signals Reference
 ========================================
 
-Consent has support for the following signals.
+Consent has support for the following signals. These signals are only sent for
+individual actions, bulk actions will have their own signals that will
+recieve the full queryset.
 
 ``pre_consent_granted``
 Called before an individual consent is granted.
