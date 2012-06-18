@@ -1,4 +1,6 @@
 # encoding: utf-8
+# flake8: noqa
+
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
@@ -7,7 +9,7 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding model 'Privilege'
         db.create_table('consent_privilege', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -32,7 +34,7 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        
+
         # Removing unique constraint on 'Consent', fields ['user', 'privilege']
         db.delete_unique('consent_consent', ['user_id', 'privilege_id'])
 
