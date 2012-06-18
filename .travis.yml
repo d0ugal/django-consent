@@ -8,9 +8,9 @@ before_install:
   - export PYTHONPATH=${PYTHONPATH}:tests/
 install:
   - pip install .
-  - pip install -r requirements/tests.txt Django==$DJANGO
+  - pip install -r requirements/test.txt Django==$DJANGO
 before_script:
-  - flake8 appregister
+  - flake8 consent --exclude=migrations
 script:
   - make test
 env:

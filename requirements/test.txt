@@ -1,7 +1,8 @@
--r requirements.txt
+-r install.txt
 coverage
 django-fixture-generator
 south
 Sphinx
 tox
 versiontools
+flake8
